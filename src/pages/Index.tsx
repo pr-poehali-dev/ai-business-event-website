@@ -90,7 +90,7 @@ const courses: Course[] = [
     title: "AI в медицине",
     description: "Искусственный интеллект трансформирует современную медицину, открывая новые возможности для диагностики, лечения и управления медицинскими процессами. AI-технологии помогают оптимизировать работу медицинских учреждений, повышать точность диагностики и улучшать качество обслуживания пациентов.",
     field: "Медицина",
-    additionalFields: ["Менеджмент"],
+    additionalFields: ["Диагностика", "Менеджмент"],
     duration: "1 день",
     format: ["Очно", "Онлайн"],
     speakers: [
@@ -1236,9 +1236,12 @@ export default function Index() {
         />
         <div className="relative container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-display font-bold text-white mb-6">
-            Технологии искусственного интеллекта в бизнесе
+            Марафон технологий искусственного интеллекта в бизнесе
           </h1>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-white/90 mb-4 max-w-3xl mx-auto">
+            10 дней практических кейсов в области цифровой трансформации бизнеса
+          </p>
+          <p className="text-lg text-white/80 mb-8 max-w-3xl mx-auto">
             Образовательное мероприятие Фонда для профессионалов, готовых внедрить AI-решения в свою деятельность
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
