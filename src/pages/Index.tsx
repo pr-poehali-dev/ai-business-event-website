@@ -723,7 +723,12 @@ export default function Index() {
                       <h4 className="font-semibold mb-2">Целевая аудитория:</h4>
                       <div className="text-sm text-gray-600">
                         {course.targetAudience.includes('•') ? (
-                          <div dangerouslySetInnerHTML={{ __html: course.targetAudience.replace(/•/g, '•') }} />
+                          course.targetAudience.split('•').filter(item => item.trim()).map((item, index) => (
+                            <div key={index} className="flex items-start mb-1">
+                              <span className="mr-2">•</span>
+                              <span>{item.trim()}</span>
+                            </div>
+                          ))
                         ) : (
                           course.targetAudience.split('.').filter(item => item.trim()).map((item, index) => (
                             <div key={index} className="flex items-start mb-1">
