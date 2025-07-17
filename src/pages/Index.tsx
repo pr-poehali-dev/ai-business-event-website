@@ -226,6 +226,7 @@ const courses: Course[] = [
     title: "AI в промышленности и робототехнике",
     description: "В эпоху цифровой трансформации промышленные предприятия активно ищут пути модернизации производственных процессов с помощью искусственного интеллекта. Современные производственные задачи требуют инновационных подходов к управлению мощностями, координации роботизированных систем и внедрению интеллектуальных решений.",
     field: "Промышленность",
+    additionalFields: ["Робототехника", "Производство"],
     duration: "1 день",
     format: ["Очно", "Онлайн"],
     speakers: [
@@ -1294,7 +1295,12 @@ export default function Index() {
               <Card key={course.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
-                    <Badge variant="secondary">{course.field}</Badge>
+                    <div className="flex gap-2 flex-wrap">
+                      <Badge variant="secondary">{course.field}</Badge>
+                      {(course as any).additionalFields?.map((field: string) => (
+                        <Badge key={field} variant="outline">{field}</Badge>
+                      ))}
+                    </div>
                     <span className="text-sm text-gray-500">{course.duration}</span>
                   </div>
                   <CardTitle className="text-xl">{course.title}</CardTitle>
