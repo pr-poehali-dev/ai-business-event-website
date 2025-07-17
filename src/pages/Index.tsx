@@ -1331,7 +1331,7 @@ export default function Index() {
                         <Badge key={field} variant="outline">{field}</Badge>
                       ))}
                     </div>
-                    <span className="text-sm text-gray-500">{course.duration}</span>
+                    <span className="text-sm text-gray-500 whitespace-nowrap">{course.duration}</span>
                   </div>
                   <CardTitle className="text-xl">{course.title}</CardTitle>
                   <CardDescription>{course.description}</CardDescription>
