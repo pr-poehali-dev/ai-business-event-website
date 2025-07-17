@@ -152,46 +152,6 @@ const courses: Course[] = [
         website: "https://diplatforms.ru",
         avatar: "/img/000f0893-4bf8-4b8c-ac5f-a1416127b16d.jpg",
         expertise: ["AI-стратегии", "Этика AI", "Цифровые платформы", "Внедрение AI"]
-      },
-      {
-        id: "7",
-        name: "Анна Медведева",
-        organization: "Национальный медицинский исследовательский центр",
-        position: "главный врач",
-        description: "Опыт внедрения AI-систем в клиническую практику крупного медицинского центра",
-        website: "https://example.com",
-        avatar: "/img/000f0893-4bf8-4b8c-ac5f-a1416127b16d.jpg",
-        expertise: ["Клиническая практика", "Внедрение AI", "Управление изменениями"]
-      },
-      {
-        id: "8",
-        name: "Игорь Петров",
-        organization: "МедТех Инновации",
-        position: "технический директор",
-        description: "Разработка и внедрение AI-решений для автоматизации медицинских процессов",
-        website: "https://example.com",
-        avatar: "/img/000f0893-4bf8-4b8c-ac5f-a1416127b16d.jpg",
-        expertise: ["MedTech", "AI-разработка", "Автоматизация"]
-      },
-      {
-        id: "9",
-        name: "Елена Соколова",
-        organization: "Российская медицинская академия",
-        position: "профессор, д.м.н.",
-        description: "Исследования в области применения машинного обучения в медицинской диагностике",
-        website: "https://example.com",
-        avatar: "/img/000f0893-4bf8-4b8c-ac5f-a1416127b16d.jpg",
-        expertise: ["Медицинские исследования", "Machine Learning", "Диагностика"]
-      },
-      {
-        id: "10",
-        name: "Андрей Волков",
-        organization: "ГК «Медицина»",
-        position: "директор по цифровизации",
-        description: "Стратегии цифровой трансформации в частной медицине с использованием AI",
-        website: "https://example.com",
-        avatar: "/img/000f0893-4bf8-4b8c-ac5f-a1416127b16d.jpg",
-        expertise: ["Цифровизация", "Частная медицина", "AI-стратегии"]
       }
     ],
     price: 25000,
