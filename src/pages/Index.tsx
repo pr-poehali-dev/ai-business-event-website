@@ -1475,57 +1475,166 @@ export default function Index() {
         </div>
       </section>
 
-      {/* About Foundation */}
+      {/* About Organizer */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-display font-bold text-gray-900 mb-8">
-              О Фонде и локации
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-display font-bold text-center text-gray-900 mb-12">
+              Об организаторе
             </h2>
-            <p className="text-lg text-gray-600 mb-12">
-              Фонд развития технологий искусственного интеллекта — ведущая организация в области AI-образования и исследований. 
-              Мы объединяем экспертов, бизнес-лидеров и новаторов для создания будущего, основанного на интеллектуальных технологиях.
-            </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
               <div className="text-left">
-                <h3 className="text-2xl font-semibold mb-6">Место проведения</h3>
+                <h3 className="text-2xl font-semibold mb-6">Российский фонд образовательных программ "Экономика и управление"</h3>
                 <div className="space-y-4">
+                  <p className="text-gray-600">
+                    <cite index="4-2,4-10">Некоммерческая организация, созданная в 2003 году в Москве, с 20-летним опытом работы на рынке образовательных услуг и рекомендациями государственных и бизнес-структур.</cite>
+                  </p>
+                  <p className="text-gray-600">
+                    <cite index="4-11,6-3">Один из крупнейших учебных центров России и крупнейший центр профессионального развития в России.</cite>
+                  </p>
+                  <p className="text-gray-600">
+                    <cite index="1-1,1-2">Проводит более 1000 семинаров, курсов повышения квалификации, программ корпоративного обучения и стажировок по более чем 30 направлениям.</cite>
+                  </p>
+                  <p className="text-gray-600">
+                    <cite index="9-4">Ежегодно в мероприятиях фонда принимают участие свыше 3000 человек.</cite>
+                  </p>
+                </div>
+              </div>
+              
+              <div className="text-left">
+                <h3 className="text-2xl font-semibold mb-6">Миссия и принципы</h3>
+                <div className="space-y-4">
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-gray-900 mb-2">Миссия:</h4>
+                    <p className="text-gray-600 text-sm">
+                      <cite index="9-6">Создание площадок для объединения ресурсов, презентации опыта, совместного решения проблем различных субъектов и секторов отечественной экономики и образования в процессе их модернизации.</cite>
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-gray-900 mb-2">Принципы:</h4>
+                    <p className="text-gray-600 text-sm">
+                      <cite index="9-7">Открытость для сотрудничества с различными партнерами, осуществление проектов с опорой на государственную политику, в тесном контакте с органами власти, бизнес-структурами, образовательными организациями.</cite>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div className="text-left">
+                <h3 className="text-2xl font-semibold mb-6">Экспертный состав</h3>
+                <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <Icon name="MapPin" className="h-5 w-5 text-primary mt-1" />
+                    <Icon name="Users" className="h-5 w-5 text-primary mt-1" />
                     <div>
-                      <p className="font-medium">Технологический центр "Сколково"</p>
-                      <p className="text-gray-600">Инновационный центр, Москва</p>
+                      <p className="font-medium">Государственные эксперты</p>
+                      <p className="text-gray-600 text-sm">
+                        <cite index="1-13,1-14">Представители Госдумы, Совета Федерации, министерств и ведомств (Минфин, Минобороны, Минпромторг, ФАС, ФНС, Роспотребнадзор), эксперты Верховного суда, судьи арбитражной системы.</cite>
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <Icon name="Car" className="h-5 w-5 text-primary mt-1" />
+                    <Icon name="Building" className="h-5 w-5 text-primary mt-1" />
                     <div>
-                      <p className="font-medium">Транспортная доступность</p>
-                      <p className="text-gray-600">Метро "Сколково", бесплатная парковка</p>
+                      <p className="font-medium">Бизнес-эксперты</p>
+                      <p className="text-gray-600 text-sm">
+                        <cite index="4-9,4-15">Высокопрофессиональный лекторский состав, техническое оснащение, актуальные программы, максимально приближенные к реалиям.</cite>
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
               
               <div className="text-left">
-                <h3 className="text-2xl font-semibold mb-6">Наши партнеры</h3>
+                <h3 className="text-2xl font-semibold mb-6">Направления деятельности</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <Icon name="GraduationCap" className="h-5 w-5 text-primary" />
+                    <span className="text-sm">Семинары и курсы повышения квалификации</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Icon name="Users" className="h-5 w-5 text-primary" />
+                    <span className="text-sm">Корпоративное обучение</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Icon name="Plane" className="h-5 w-5 text-primary" />
+                    <span className="text-sm">Образовательные бизнес-туры</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Icon name="Award" className="h-5 w-5 text-primary" />
+                    <span className="text-sm">Программы MBA</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Icon name="RefreshCw" className="h-5 w-5 text-primary" />
+                    <span className="text-sm">Профессиональная переподготовка</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Location */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-display font-bold text-gray-900 mb-8">
+              Место проведения
+            </h2>
+            <p className="text-lg text-gray-600 mb-12">
+              Мероприятия проводятся в современных конференц-залах в центре Москвы с возможностью онлайн-участия
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="text-left">
+                <h3 className="text-2xl font-semibold mb-6">Адрес и расположение</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <Icon name="MapPin" className="h-5 w-5 text-primary mt-1" />
+                    <div>
+                      <p className="font-medium">Центр Москвы</p>
+                      <p className="text-gray-600">
+                        <cite index="4-12">Офис Фонда удобно расположен в самом центре Москвы, в шаговой доступности от Красной площади и Администрации Президента.</cite>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Icon name="Building" className="h-5 w-5 text-primary mt-1" />
+                    <div>
+                      <p className="font-medium">Славянская площадь, 2/5/4</p>
+                      <p className="text-gray-600">109074, Москва</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Icon name="Car" className="h-5 w-5 text-primary mt-1" />
+                    <div>
+                      <p className="font-medium">Транспортная доступность</p>
+                      <p className="text-gray-600">Удобное расположение, близко к метро</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="text-left">
+                <h3 className="text-2xl font-semibold mb-6">Формат участия</h3>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
-                    <Icon name="Building" className="h-5 w-5 text-primary" />
-                    <span>Сбербанк</span>
+                    <Icon name="Users" className="h-5 w-5 text-primary" />
+                    <span>Очное участие в Москве</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Icon name="Building" className="h-5 w-5 text-primary" />
-                    <span>Яндекс</span>
+                    <Icon name="Monitor" className="h-5 w-5 text-primary" />
+                    <span>Онлайн-трансляция в режиме реального времени</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Icon name="Building" className="h-5 w-5 text-primary" />
-                    <span>МТС</span>
+                    <Icon name="Clock" className="h-5 w-5 text-primary" />
+                    <span>Записи мероприятий доступны после проведения</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Icon name="Building" className="h-5 w-5 text-primary" />
-                    <span>Газпром Нефть</span>
+                    <Icon name="Calendar" className="h-5 w-5 text-primary" />
+                    <span>Обучение в будни и по субботам</span>
                   </div>
                 </div>
               </div>
