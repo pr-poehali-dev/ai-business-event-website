@@ -1714,21 +1714,21 @@ export default function Index() {
                   <Icon name="Phone" className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Телефон</h3>
-                <p className="text-gray-600">+7 (495) 123-45-67</p>
+                <p className="text-gray-600">+7 (495) 255-55-53</p>
               </div>
               <div>
                 <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Icon name="Mail" className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Email</h3>
-                <p className="text-gray-600">info@aifund.ru</p>
+                <p className="text-gray-600">info@profitcon.ru</p>
               </div>
               <div>
                 <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Icon name="MapPin" className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Адрес</h3>
-                <p className="text-gray-600">Сколково, Москва</p>
+                <p className="text-gray-600">Славянская площадь, 2/5/4<br />109074, Москва</p>
               </div>
             </div>
           </div>
