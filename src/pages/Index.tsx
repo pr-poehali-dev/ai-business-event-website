@@ -1242,7 +1242,7 @@ export default function Index() {
             10 дней практических кейсов в области цифровой трансформации бизнеса
           </p>
           <p className="text-lg text-white/80 mb-8 max-w-3xl mx-auto">
-            Образовательное мероприятие Фонда для профессионалов, готовых внедрить AI-решения в свою деятельность
+            Образовательное мероприятие РФОП "Экономика и управление" для профессионалов, готовых внедрить AI-решения в свою деятельность
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
@@ -1739,7 +1739,7 @@ export default function Index() {
                   <Icon name="MapPin" className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Адрес</h3>
-                <p className="text-gray-600">Славянская площадь, 2/5/4<br />109074, Москва</p>
+                <p className="text-gray-600">Славянская площадь, 2/5/4<br />109074, Москва<br />м. Китай-город</p>
               </div>
             </div>
           </div>
