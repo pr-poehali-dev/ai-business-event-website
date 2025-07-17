@@ -863,18 +863,25 @@ export default function Index() {
 
                               <div>
                                 <h4 className="font-semibold mb-3">Спикеры курса:</h4>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 gap-4">
                                   {course.speakers.map((speaker) => (
-                                    <div key={speaker.id} className="flex items-center space-x-3 p-3 border rounded-lg">
-                                      <Avatar className="w-12 h-12">
-                                        <AvatarImage src={speaker.avatar} alt={speaker.name} />
-                                        <AvatarFallback>{speaker.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                                      </Avatar>
-                                      <div className="flex-1">
-                                        <h5 className="font-medium">{speaker.name}</h5>
-                                        <p className="text-sm text-gray-600">{speaker.position}</p>
-                                        <p className="text-sm text-gray-500">{speaker.organization}</p>
+                                    <div key={speaker.name} className="p-4 border rounded-lg">
+                                      <div className="flex items-start space-x-3 mb-3">
+                                        <Avatar className="w-12 h-12">
+                                          <AvatarImage src={speaker.avatar} alt={speaker.name} />
+                                          <AvatarFallback>{speaker.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                        </Avatar>
+                                        <div className="flex-1">
+                                          <h5 className="font-medium">{speaker.name}</h5>
+                                          <p className="text-sm text-gray-600">{speaker.title}</p>
+                                          <p className="text-sm text-gray-500">{speaker.company}</p>
+                                        </div>
                                       </div>
+                                      {speaker.description && (
+                                        <p className="text-sm text-gray-700 leading-relaxed">
+                                          {speaker.description}
+                                        </p>
+                                      )}
                                     </div>
                                   ))}
                                 </div>
