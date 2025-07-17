@@ -1197,32 +1197,32 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-red-50">
       {/* Header */}
       <header className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-gray-200/50 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <img 
-                src="/img/ccdda03f-fc9b-4793-aaf6-2c523f0287f9.jpg" 
+                src="https://cdn.poehali.dev/files/163a8f06-f153-44e6-9534-bce613fbb638.jpg" 
                 alt="РФОП Экономика и управление" 
-                className="h-10 w-10 rounded-lg object-cover"
+                className="h-10 w-auto object-contain"
               />
               <h1 className="text-2xl font-display font-bold text-gray-900">
                 РФОП "Экономика и управление"
               </h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="outline" className="relative border-2 border-blue-500/20 hover:border-blue-500/40 hover:bg-blue-500/5 transition-all duration-300">
+              <Button variant="outline" className="relative border-2 border-red-500/20 hover:border-red-500/40 hover:bg-red-500/5 transition-all duration-300">
                 <Icon name="ShoppingCart" className="h-4 w-4 mr-2" />
                 Корзина
                 {cart.length > 0 && (
-                  <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
+                  <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center bg-gradient-to-r from-blue-600 to-red-600">
                     {cart.length}
                   </Badge>
                 )}
               </Button>
-              <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300">Войти</Button>
+              <Button className="bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 shadow-lg hover:shadow-xl transition-all duration-300">Войти</Button>
             </div>
           </div>
         </div>
@@ -1231,7 +1231,7 @@ export default function Index() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <div 
-          className="absolute inset-0 bg-gradient-to-br from-blue-900/95 via-purple-900/90 to-indigo-900/95"
+          className="absolute inset-0 bg-gradient-to-br from-blue-900/95 via-red-900/90 to-cyan-900/95"
           style={{
             backgroundImage: `url(/img/587cce0c-d871-45c6-84c6-9146b11d8afd.jpg)`,
             backgroundSize: 'cover',
@@ -1241,12 +1241,12 @@ export default function Index() {
         {/* Animated particles background */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          <div className="absolute top-3/4 right-1/4 w-72 h-72 bg-red-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
         <div className="relative container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-display font-bold text-white mb-6 relative">
-            <span className="bg-gradient-to-r from-blue-200 via-purple-200 to-indigo-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-200 via-red-200 to-cyan-200 bg-clip-text text-transparent">
               Марафон технологий
             </span>
             <br />
@@ -1264,11 +1264,11 @@ export default function Index() {
             Образовательное мероприятие РФОП "Экономика и управление" для профессионалов, готовых внедрить AI-решения в свою деятельность
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-red-600 text-white hover:from-blue-700 hover:to-red-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
               <Icon name="Calendar" className="mr-2 h-5 w-5" />
               Выбрать курсы
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary backdrop-blur-sm bg-white/10 shadow-lg transition-all duration-300 transform hover:scale-105">
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-red-600 backdrop-blur-sm bg-white/10 shadow-lg transition-all duration-300 transform hover:scale-105">
               <Icon name="Users" className="mr-2 h-5 w-5" />
               О спикерах
             </Button>
@@ -1794,15 +1794,15 @@ export default function Index() {
       )}
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-gray-900 via-slate-900 to-gray-900 text-white py-12 relative overflow-hidden">
+      <footer className="bg-gradient-to-r from-blue-900 via-red-900 to-cyan-900 text-white py-12 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <img 
-                  src="/img/ccdda03f-fc9b-4793-aaf6-2c523f0287f9.jpg" 
+                  src="https://cdn.poehali.dev/files/163a8f06-f153-44e6-9534-bce613fbb638.jpg" 
                   alt="РФОП Экономика и управление" 
-                  className="h-8 w-8 rounded-lg object-cover"
+                  className="h-8 w-auto object-contain"
                 />
                 <h3 className="text-xl font-bold">РФОП "Экономика и управление"</h3>
               </div>
