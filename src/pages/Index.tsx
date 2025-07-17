@@ -1241,6 +1241,9 @@ export default function Index() {
           <p className="text-xl text-white/90 mb-4 max-w-3xl mx-auto">
             10 дней практических кейсов в области цифровой трансформации бизнеса
           </p>
+          <p className="text-lg text-white/80 mb-2 max-w-3xl mx-auto">
+            Славянская площадь, 2/5/4, Москва • м. Китай-город
+          </p>
           <p className="text-lg text-white/80 mb-8 max-w-3xl mx-auto">
             Образовательное мероприятие РФОП "Экономика и управление" для профессионалов, готовых внедрить AI-решения в свою деятельность
           </p>
