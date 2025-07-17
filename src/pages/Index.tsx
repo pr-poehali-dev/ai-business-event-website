@@ -1268,7 +1268,7 @@ export default function Index() {
                 <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Icon name="Users" className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">100 спикеров</h3>
+                <h3 className="text-xl font-semibold mb-2">22 спикера</h3>
                 <p className="text-gray-600">Ведущие эксперты из крупнейших технологических компаний</p>
               </div>
               <div className="text-center">
