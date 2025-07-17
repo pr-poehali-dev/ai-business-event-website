@@ -155,7 +155,7 @@ const courses: Course[] = [
       }
     ],
     price: 25000,
-    targetAudience: "Для руководителей медицинских и телемедицинских компаний, производителей медицинского оборудования, представителей фармацевтических компаний, руководителей клиник, специалистов ИТ-компаний в сфере медицины. Будет интересен участникам с базовым пониманием современных технологий в области искусственного интеллекта, желающим повысить эффективность бизнеса.",
+    targetAudience: "• Руководители медицинских и телемедицинских компаний • Производители медицинского оборудования • Представители фармацевтических компаний • Руководители клиник • Специалисты ИТ-компаний в сфере медицины • Участники с базовым пониманием современных технологий в области искусственного интеллекта, желающие повысить эффективность бизнеса",
     program: [
       {
         title: "Блок 1. Введение в AI-технологии в медицине",
@@ -721,7 +721,18 @@ export default function Index() {
                   <div className="space-y-4">
                     <div>
                       <h4 className="font-semibold mb-2">Целевая аудитория:</h4>
-                      <p className="text-sm text-gray-600">{course.targetAudience}</p>
+                      <div className="text-sm text-gray-600">
+                        {course.targetAudience.includes('•') ? (
+                          <div dangerouslySetInnerHTML={{ __html: course.targetAudience.replace(/•/g, '•') }} />
+                        ) : (
+                          course.targetAudience.split('.').filter(item => item.trim()).map((item, index) => (
+                            <div key={index} className="flex items-start mb-1">
+                              <span className="mr-2">•</span>
+                              <span>{item.trim()}</span>
+                            </div>
+                          ))
+                        )}
+                      </div>
                     </div>
                     
                     <div>
