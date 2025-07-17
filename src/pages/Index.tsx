@@ -5,20 +5,9 @@ import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import Icon from '@/components/ui/icon';
-
-interface Course {
-  id: string;
-  title: string;
-  description: string;
-  field: string;
-  duration: string;
-  format: string[];
-  speakers: number;
-  price: number;
-  targetAudience: string;
-  program: string[];
-}
 
 interface Speaker {
   id: string;
@@ -28,7 +17,72 @@ interface Speaker {
   description: string;
   website?: string;
   avatar: string;
+  expertise: string[];
 }
+
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  field: string;
+  duration: string;
+  format: string[];
+  speakers: Speaker[];
+  price: number;
+  targetAudience: string;
+  program: {
+    title: string;
+    topics: string[];
+    duration: string;
+  }[];
+  learningOutcomes: string[];
+  requirements: string[];
+  schedule: string;
+}
+
+// Генерация 100 спикеров (по 10 для каждого курса)
+const generateSpeakers = (): Speaker[] => {
+  const names = [
+    'Александр Иванов', 'Мария Петрова', 'Дмитрий Сидоров', 'Елена Козлова', 'Андрей Морозов',
+    'Ольга Новикова', 'Сергей Волков', 'Анна Соколова', 'Максим Лебедев', 'Татьяна Попова',
+    'Михаил Орлов', 'Наталья Васильева', 'Игорь Федоров', 'Светлана Михайлова', 'Владимир Алексеев',
+    'Екатерина Романова', 'Павел Григорьев', 'Юлия Степанова', 'Николай Семенов', 'Ирина Павлова'
+  ];
+
+  const organizations = [
+    'Сбербанк', 'Яндекс', 'МТС', 'Газпром Нефть', 'Роснефть', 'ВТБ', 'Тинькофф', 'OZON',
+    'Wildberries', 'Мегафон', 'Билайн', 'Ростелеком', 'Норникель', 'Лукойл', 'Магнит',
+    'X5 Retail Group', 'Сургутнефтегаз', 'Новатэк', 'Татнефть', 'Башнефть'
+  ];
+
+  const positions = [
+    'Директор по технологиям', 'Главный архитектор', 'Руководитель департамента AI',
+    'Ведущий Data Scientist', 'Главный аналитик', 'Директор по инновациям',
+    'Руководитель центра машинного обучения', 'Главный специалист по AI',
+    'Директор по цифровым технологиям', 'Ведущий исследователь'
+  ];
+
+  const speakers: Speaker[] = [];
+  let speakerId = 1;
+
+  for (let i = 0; i < 100; i++) {
+    speakers.push({
+      id: speakerId.toString(),
+      name: names[i % names.length],
+      organization: organizations[i % organizations.length],
+      position: positions[i % positions.length],
+      description: `Эксперт в области искусственного интеллекта с ${5 + (i % 15)}-летним опытом работы в крупных технологических компаниях. Специализируется на внедрении AI-решений в бизнес-процессы.`,
+      website: 'https://example.com',
+      avatar: '/img/000f0893-4bf8-4b8c-ac5f-a1416127b16d.jpg',
+      expertise: ['Machine Learning', 'Deep Learning', 'Data Science', 'AI Strategy']
+    });
+    speakerId++;
+  }
+
+  return speakers;
+};
+
+const allSpeakers = generateSpeakers();
 
 const courses: Course[] = [
   {
@@ -38,16 +92,38 @@ const courses: Course[] = [
     field: "Медицина",
     duration: "1 день",
     format: ["Очно", "Онлайн"],
-    speakers: 10,
+    speakers: allSpeakers.slice(0, 10),
     price: 25000,
     targetAudience: "Врачи, медицинские администраторы, IT-специалисты в здравоохранении",
     program: [
-      "Введение в медицинский AI",
-      "Диагностические системы",
-      "Анализ медицинских изображений",
-      "Персонализированная медицина",
-      "Этические вопросы в медицинском AI"
-    ]
+      {
+        title: "Введение в медицинский AI",
+        topics: ["История AI в медицине", "Основные направления применения", "Регулирование и стандарты"],
+        duration: "2 часа"
+      },
+      {
+        title: "Диагностические системы",
+        topics: ["Анализ медицинских изображений", "Интерпретация лабораторных данных", "Системы поддержки принятия решений"],
+        duration: "2 часа"
+      },
+      {
+        title: "Персонализированная медицина",
+        topics: ["Генетический анализ", "Предиктивная аналитика", "Индивидуальные планы лечения"],
+        duration: "2 часа"
+      },
+      {
+        title: "Этические вопросы",
+        topics: ["Конфиденциальность данных", "Алгоритмическая справедливость", "Ответственность AI-систем"],
+        duration: "2 часа"
+      }
+    ],
+    learningOutcomes: [
+      "Понимание основных принципов применения AI в медицине",
+      "Навыки работы с медицинскими AI-системами",
+      "Знание этических аспектов использования AI в здравоохранении"
+    ],
+    requirements: ["Базовые знания в области медицины", "Понимание основ информационных технологий"],
+    schedule: "9:00-18:00 с перерывами на кофе и обед"
   },
   {
     id: "ai-industry",
@@ -56,16 +132,38 @@ const courses: Course[] = [
     field: "Промышленность",
     duration: "1 день",
     format: ["Очно", "Онлайн"],
-    speakers: 10,
+    speakers: allSpeakers.slice(10, 20),
     price: 25000,
     targetAudience: "Инженеры, технические директора, специалисты по автоматизации",
     program: [
-      "Индустрия 4.0 и AI",
-      "Предиктивное обслуживание",
-      "Компьютерное зрение в производстве",
-      "Роботизация процессов",
-      "Цифровые двойники"
-    ]
+      {
+        title: "Индустрия 4.0 и AI",
+        topics: ["Концепция Индустрии 4.0", "Роль AI в умном производстве", "Интеграция систем"],
+        duration: "2 часа"
+      },
+      {
+        title: "Предиктивное обслуживание",
+        topics: ["Анализ состояния оборудования", "Прогнозирование отказов", "Оптимизация ремонтных работ"],
+        duration: "2 часа"
+      },
+      {
+        title: "Компьютерное зрение в производстве",
+        topics: ["Контроль качества", "Мониторинг процессов", "Безопасность на производстве"],
+        duration: "2 часа"
+      },
+      {
+        title: "Цифровые двойники",
+        topics: ["Моделирование производственных процессов", "Виртуальное тестирование", "Оптимизация"],
+        duration: "2 часа"
+      }
+    ],
+    learningOutcomes: [
+      "Понимание принципов Индустрии 4.0",
+      "Навыки внедрения AI-решений в производство",
+      "Знание технологий предиктивного обслуживания"
+    ],
+    requirements: ["Техническое образование", "Опыт работы в промышленности"],
+    schedule: "9:00-18:00 с перерывами на кофе и обед"
   },
   {
     id: "ai-retail",
@@ -74,16 +172,38 @@ const courses: Course[] = [
     field: "Ритейл",
     duration: "1 день",
     format: ["Очно", "Онлайн"],
-    speakers: 10,
+    speakers: allSpeakers.slice(20, 30),
     price: 25000,
     targetAudience: "Менеджеры по продажам, маркетологи, владельцы бизнеса",
     program: [
-      "Рекомендательные системы",
-      "Анализ поведения клиентов",
-      "Чат-боты и виртуальные ассистенты",
-      "Оптимизация цен",
-      "Управление запасами"
-    ]
+      {
+        title: "Рекомендательные системы",
+        topics: ["Алгоритмы персонализации", "Анализ поведения покупателей", "Увеличение конверсии"],
+        duration: "2 часа"
+      },
+      {
+        title: "Чат-боты и виртуальные ассистенты",
+        topics: ["Автоматизация обслуживания", "Обработка естественного языка", "Интеграция с CRM"],
+        duration: "2 часа"
+      },
+      {
+        title: "Оптимизация цен",
+        topics: ["Динамическое ценообразование", "Анализ конкурентов", "Максимизация прибыли"],
+        duration: "2 часа"
+      },
+      {
+        title: "Управление запасами",
+        topics: ["Прогнозирование спроса", "Оптимизация закупок", "Минимизация остатков"],
+        duration: "2 часа"
+      }
+    ],
+    learningOutcomes: [
+      "Навыки внедрения AI в ритейл",
+      "Понимание принципов персонализации",
+      "Знание методов оптимизации продаж"
+    ],
+    requirements: ["Опыт работы в ритейле или маркетинге", "Базовые знания аналитики"],
+    schedule: "9:00-18:00 с перерывами на кофе и обед"
   },
   {
     id: "ai-agriculture",
@@ -92,16 +212,38 @@ const courses: Course[] = [
     field: "Сельское хозяйство",
     duration: "1 день",
     format: ["Очно", "Онлайн"],
-    speakers: 10,
+    speakers: allSpeakers.slice(30, 40),
     price: 25000,
     targetAudience: "Агрономы, фермеры, специалисты по сельскому хозяйству",
     program: [
-      "Точное земледелие",
-      "Дроны и сенсоры",
-      "Прогнозирование урожайности",
-      "Управление ресурсами",
-      "Автоматизация процессов"
-    ]
+      {
+        title: "Точное земледелие",
+        topics: ["Анализ почвы", "Оптимизация внесения удобрений", "Зонирование полей"],
+        duration: "2 часа"
+      },
+      {
+        title: "Дроны и сенсоры",
+        topics: ["Мониторинг посевов", "Обнаружение болезней", "Автономные системы"],
+        duration: "2 часа"
+      },
+      {
+        title: "Прогнозирование урожайности",
+        topics: ["Анализ погодных данных", "Модели роста растений", "Планирование сбора урожая"],
+        duration: "2 часа"
+      },
+      {
+        title: "Управление ресурсами",
+        topics: ["Оптимизация полива", "Энергоэффективность", "Устойчивое развитие"],
+        duration: "2 часа"
+      }
+    ],
+    learningOutcomes: [
+      "Понимание принципов точного земледелия",
+      "Навыки работы с агротехническими AI-системами",
+      "Знание методов оптимизации сельскохозяйственного производства"
+    ],
+    requirements: ["Образование в области сельского хозяйства", "Базовые знания агротехники"],
+    schedule: "9:00-18:00 с перерывами на кофе и обед"
   },
   {
     id: "ai-logistics",
@@ -110,16 +252,38 @@ const courses: Course[] = [
     field: "Логистика",
     duration: "1 день",
     format: ["Очно", "Онлайн"],
-    speakers: 10,
+    speakers: allSpeakers.slice(40, 50),
     price: 25000,
     targetAudience: "Логисты, транспортные компании, менеджеры по закупкам",
     program: [
-      "Оптимизация маршрутов",
-      "Управление складами",
-      "Прогнозирование спроса",
-      "Автономные транспортные средства",
-      "Блокчейн в логистике"
-    ]
+      {
+        title: "Оптимизация маршрутов",
+        topics: ["Алгоритмы маршрутизации", "Учет трафика", "Минимизация затрат"],
+        duration: "2 часа"
+      },
+      {
+        title: "Управление складами",
+        topics: ["Автоматизация складских операций", "Робототехника", "Инвентаризация"],
+        duration: "2 часа"
+      },
+      {
+        title: "Прогнозирование спроса",
+        topics: ["Анализ трендов", "Сезонность", "Планирование поставок"],
+        duration: "2 часа"
+      },
+      {
+        title: "Автономные транспортные средства",
+        topics: ["Беспилотные технологии", "Безопасность", "Регулирование"],
+        duration: "2 часа"
+      }
+    ],
+    learningOutcomes: [
+      "Навыки оптимизации логистических процессов",
+      "Понимание принципов управления цепочками поставок",
+      "Знание перспектив автономного транспорта"
+    ],
+    requirements: ["Опыт работы в логистике", "Базовые знания транспортных процессов"],
+    schedule: "9:00-18:00 с перерывами на кофе и обед"
   },
   {
     id: "ai-management",
@@ -128,16 +292,38 @@ const courses: Course[] = [
     field: "Менеджмент",
     duration: "1 день",
     format: ["Очно", "Онлайн"],
-    speakers: 10,
+    speakers: allSpeakers.slice(50, 60),
     price: 25000,
     targetAudience: "Руководители, управленцы среднего звена, бизнес-аналитики",
     program: [
-      "AI-стратегия для бизнеса",
-      "Анализ данных для принятия решений",
-      "Автоматизация бизнес-процессов",
-      "Управление командой в эпоху AI",
-      "ROI от внедрения AI"
-    ]
+      {
+        title: "AI-стратегия для бизнеса",
+        topics: ["Цифровая трансформация", "Конкурентные преимущества", "Инвестиции в AI"],
+        duration: "2 часа"
+      },
+      {
+        title: "Анализ данных для принятия решений",
+        topics: ["Business Intelligence", "Предиктивная аналитика", "KPI и метрики"],
+        duration: "2 часа"
+      },
+      {
+        title: "Автоматизация бизнес-процессов",
+        topics: ["RPA технологии", "Оптимизация workflows", "Управление изменениями"],
+        duration: "2 часа"
+      },
+      {
+        title: "ROI от внедрения AI",
+        topics: ["Оценка эффективности", "Методики расчета", "Управление проектами"],
+        duration: "2 часа"
+      }
+    ],
+    learningOutcomes: [
+      "Понимание стратегических аспектов AI",
+      "Навыки оценки AI-проектов",
+      "Знание методов внедрения AI в организации"
+    ],
+    requirements: ["Управленческий опыт", "Базовые знания бизнес-анализа"],
+    schedule: "9:00-18:00 с перерывами на кофе и обед"
   },
   {
     id: "ai-engineering",
@@ -146,16 +332,38 @@ const courses: Course[] = [
     field: "Инженерия",
     duration: "1 день",
     format: ["Очно", "Онлайн"],
-    speakers: 10,
+    speakers: allSpeakers.slice(60, 70),
     price: 25000,
     targetAudience: "Инженеры всех специальностей, технические специалисты",
     program: [
-      "AI в проектировании",
-      "Генеративные модели",
-      "Оптимизация конструкций",
-      "Моделирование и симуляция",
-      "Автоматизация расчетов"
-    ]
+      {
+        title: "AI в проектировании",
+        topics: ["Генеративный дизайн", "Оптимизация конструкций", "CAD-интеграция"],
+        duration: "2 часа"
+      },
+      {
+        title: "Моделирование и симуляция",
+        topics: ["Численное моделирование", "Прогнозирование свойств", "Виртуальные испытания"],
+        duration: "2 часа"
+      },
+      {
+        title: "Автоматизация расчетов",
+        topics: ["Инженерные расчеты", "Алгоритмы оптимизации", "Валидация результатов"],
+        duration: "2 часа"
+      },
+      {
+        title: "Контроль качества",
+        topics: ["Автоматический контроль", "Дефектоскопия", "Статистический анализ"],
+        duration: "2 часа"
+      }
+    ],
+    learningOutcomes: [
+      "Навыки применения AI в инженерии",
+      "Понимание принципов генеративного дизайна",
+      "Знание методов автоматизации инженерных расчетов"
+    ],
+    requirements: ["Техническое образование", "Опыт инженерной работы"],
+    schedule: "9:00-18:00 с перерывами на кофе и обед"
   },
   {
     id: "ai-law",
@@ -164,16 +372,38 @@ const courses: Course[] = [
     field: "Право",
     duration: "1 день",
     format: ["Очно", "Онлайн"],
-    speakers: 10,
+    speakers: allSpeakers.slice(70, 80),
     price: 25000,
     targetAudience: "Юристы, правовые консультанты, нотариусы",
     program: [
-      "Анализ правовых документов",
-      "Автоматизация договорной работы",
-      "Поиск правовой информации",
-      "Предиктивная аналитика в праве",
-      "Этические вопросы AI в праве"
-    ]
+      {
+        title: "Анализ правовых документов",
+        topics: ["Автоматическое извлечение данных", "Классификация документов", "Поиск прецедентов"],
+        duration: "2 часа"
+      },
+      {
+        title: "Автоматизация договорной работы",
+        topics: ["Генерация документов", "Проверка соответствия", "Управление версиями"],
+        duration: "2 часа"
+      },
+      {
+        title: "Предиктивная аналитика в праве",
+        topics: ["Прогнозирование исходов дел", "Анализ судебной практики", "Оценка рисков"],
+        duration: "2 часа"
+      },
+      {
+        title: "Этические вопросы AI в праве",
+        topics: ["Алгоритмическая справедливость", "Прозрачность решений", "Ответственность"],
+        duration: "2 часа"
+      }
+    ],
+    learningOutcomes: [
+      "Навыки автоматизации правовой работы",
+      "Понимание возможностей AI в юриспруденции",
+      "Знание этических аспектов применения AI в праве"
+    ],
+    requirements: ["Юридическое образование", "Опыт правовой работы"],
+    schedule: "9:00-18:00 с перерывами на кофе и обед"
   },
   {
     id: "ai-quality",
@@ -182,16 +412,38 @@ const courses: Course[] = [
     field: "Качество",
     duration: "1 день",
     format: ["Очно", "Онлайн"],
-    speakers: 10,
+    speakers: allSpeakers.slice(80, 90),
     price: 25000,
     targetAudience: "Специалисты по качеству, технические контролеры, аудиторы",
     program: [
-      "Автоматизация контроля качества",
-      "Анализ дефектов",
-      "Стандартизация процессов",
-      "Статистический анализ",
-      "Интеграция с производством"
-    ]
+      {
+        title: "Автоматизация контроля качества",
+        topics: ["Системы машинного зрения", "Автоматические измерения", "Классификация дефектов"],
+        duration: "2 часа"
+      },
+      {
+        title: "Статистический анализ",
+        topics: ["Контрольные карты", "Анализ трендов", "Прогнозирование качества"],
+        duration: "2 часа"
+      },
+      {
+        title: "Стандартизация процессов",
+        topics: ["Автоматическая проверка соответствия", "Управление документооборотом", "Аудит качества"],
+        duration: "2 часа"
+      },
+      {
+        title: "Интеграция с производством",
+        topics: ["Обратная связь в реальном времени", "Корректирующие действия", "Непрерывное улучшение"],
+        duration: "2 часа"
+      }
+    ],
+    learningOutcomes: [
+      "Навыки автоматизации контроля качества",
+      "Понимание принципов статистического анализа",
+      "Знание методов интеграции AI в системы качества"
+    ],
+    requirements: ["Образование в области качества", "Опыт работы в контроле качества"],
+    schedule: "9:00-18:00 с перерывами на кофе и обед"
   },
   {
     id: "ai-foreign-trade",
@@ -200,52 +452,44 @@ const courses: Course[] = [
     field: "ВЭД",
     duration: "1 день",
     format: ["Очно", "Онлайн"],
-    speakers: 10,
+    speakers: allSpeakers.slice(90, 100),
     price: 25000,
     targetAudience: "Специалисты по ВЭД, таможенные брокеры, экспортеры",
     program: [
-      "Автоматизация таможенного оформления",
-      "Анализ торговых данных",
-      "Валютное регулирование",
-      "Международная логистика",
-      "Комплаенс в ВЭД"
-    ]
-  }
-];
-
-const speakers: Speaker[] = [
-  {
-    id: "1",
-    name: "Анна Петрова",
-    organization: "Сбер",
-    position: "Руководитель департамента AI",
-    description: "Эксперт в области машинного обучения с 15-летним опытом работы в крупных технологических компаниях",
-    website: "https://example.com",
-    avatar: "/img/000f0893-4bf8-4b8c-ac5f-a1416127b16d.jpg"
-  },
-  {
-    id: "2",
-    name: "Михаил Соколов",
-    organization: "Яндекс",
-    position: "Главный Data Scientist",
-    description: "Специалист по глубокому обучению и компьютерному зрению, автор 50+ научных публикаций",
-    website: "https://example.com",
-    avatar: "/img/000f0893-4bf8-4b8c-ac5f-a1416127b16d.jpg"
-  },
-  {
-    id: "3",
-    name: "Елена Кузнецова",
-    organization: "МТС",
-    position: "Директор по инновациям",
-    description: "Лидер в области внедрения AI-решений в телекоммуникационной отрасли",
-    website: "https://example.com",
-    avatar: "/img/000f0893-4bf8-4b8c-ac5f-a1416127b16d.jpg"
+      {
+        title: "Автоматизация таможенного оформления",
+        topics: ["Электронное декларирование", "Автоматическая классификация товаров", "Проверка документов"],
+        duration: "2 часа"
+      },
+      {
+        title: "Анализ торговых данных",
+        topics: ["Анализ рынков", "Прогнозирование цен", "Оптимизация поставок"],
+        duration: "2 часа"
+      },
+      {
+        title: "Валютное регулирование",
+        topics: ["Автоматический контроль операций", "Соответствие требованиям", "Отчетность"],
+        duration: "2 часа"
+      },
+      {
+        title: "Комплаенс в ВЭД",
+        topics: ["Проверка санкционных списков", "Контроль контрагентов", "Управление рисками"],
+        duration: "2 часа"
+      }
+    ],
+    learningOutcomes: [
+      "Навыки автоматизации ВЭД-процессов",
+      "Понимание принципов цифрового таможенного оформления",
+      "Знание методов анализа международной торговли"
+    ],
+    requirements: ["Опыт работы в ВЭД", "Знание таможенного законодательства"],
+    schedule: "9:00-18:00 с перерывами на кофе и обед"
   }
 ];
 
 export default function Index() {
   const [cart, setCart] = useState<string[]>([]);
-  const [selectedFormat, setSelectedFormat] = useState<{ [key: string]: string }>({});
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
   const addToCart = (courseId: string) => {
     if (!cart.includes(courseId)) {
@@ -297,7 +541,7 @@ export default function Index() {
         <div 
           className="absolute inset-0 bg-gradient-to-r from-primary/20 to-blue-600/20"
           style={{
-            backgroundImage: `url(/img/42ee25be-0ef4-484d-9095-c2bb184c12b8.jpg)`,
+            backgroundImage: `url(/img/4bf4fc87-8b77-4591-a054-eadd6bfab266.jpg)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -345,7 +589,7 @@ export default function Index() {
                 <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Icon name="Users" className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">100+ спикеров</h3>
+                <h3 className="text-xl font-semibold mb-2">100 спикеров</h3>
                 <p className="text-gray-600">Ведущие эксперты из крупнейших технологических компаний</p>
               </div>
               <div className="text-center">
@@ -360,39 +604,8 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Speakers Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-display font-bold text-center text-gray-900 mb-12">
-            Ведущие спикеры
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {speakers.map((speaker) => (
-              <Card key={speaker.id} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6 text-center">
-                  <Avatar className="w-24 h-24 mx-auto mb-4">
-                    <AvatarImage src={speaker.avatar} alt={speaker.name} />
-                    <AvatarFallback>{speaker.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                  </Avatar>
-                  <h3 className="text-xl font-semibold mb-2">{speaker.name}</h3>
-                  <p className="text-primary font-medium mb-1">{speaker.position}</p>
-                  <p className="text-gray-600 mb-3">{speaker.organization}</p>
-                  <p className="text-sm text-gray-500 mb-4">{speaker.description}</p>
-                  {speaker.website && (
-                    <Button variant="outline" size="sm">
-                      <Icon name="ExternalLink" className="h-4 w-4 mr-2" />
-                      Подробнее
-                    </Button>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Courses Catalog */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-display font-bold text-center text-gray-900 mb-12">
             Каталог курсов
@@ -424,24 +637,6 @@ export default function Index() {
                       </div>
                     </div>
 
-                    <Accordion type="single" collapsible>
-                      <AccordionItem value="program">
-                        <AccordionTrigger className="text-sm">
-                          Программа курса
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          <ul className="space-y-1 text-sm">
-                            {course.program.map((item, index) => (
-                              <li key={index} className="flex items-center">
-                                <Icon name="CheckCircle" className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-
                     <div className="border-t pt-4">
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-2xl font-bold text-primary">
@@ -449,135 +644,131 @@ export default function Index() {
                         </span>
                         <div className="flex items-center text-sm text-gray-500">
                           <Icon name="Users" className="h-4 w-4 mr-1" />
-                          {course.speakers} спикеров
+                          {course.speakers.length} спикеров
                         </div>
                       </div>
                       
-                      {cart.includes(course.id) ? (
-                        <Button
-                          variant="outline"
-                          className="w-full text-red-600 border-red-200 hover:bg-red-50"
-                          onClick={() => removeFromCart(course.id)}
-                        >
-                          <Icon name="Trash2" className="h-4 w-4 mr-2" />
-                          Удалить из корзины
-                        </Button>
-                      ) : (
-                        <Button
-                          className="w-full"
-                          onClick={() => addToCart(course.id)}
-                        >
-                          <Icon name="ShoppingCart" className="h-4 w-4 mr-2" />
-                          Добавить в корзину
-                        </Button>
-                      )}
+                      <div className="flex gap-2">
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="outline" size="sm" className="flex-1">
+                              <Icon name="Info" className="h-4 w-4 mr-2" />
+                              Подробнее
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                            <DialogHeader>
+                              <DialogTitle className="text-2xl">{course.title}</DialogTitle>
+                              <DialogDescription>{course.description}</DialogDescription>
+                            </DialogHeader>
+                            <div className="space-y-6">
+                              <div>
+                                <h4 className="font-semibold mb-3">Программа курса:</h4>
+                                <div className="space-y-4">
+                                  {course.program.map((session, index) => (
+                                    <div key={index} className="border rounded-lg p-4">
+                                      <div className="flex items-center justify-between mb-2">
+                                        <h5 className="font-medium">{session.title}</h5>
+                                        <span className="text-sm text-gray-500">{session.duration}</span>
+                                      </div>
+                                      <ul className="text-sm text-gray-600 space-y-1">
+                                        {session.topics.map((topic, topicIndex) => (
+                                          <li key={topicIndex} className="flex items-center">
+                                            <Icon name="CheckCircle" className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
+                                            {topic}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+
+                              <div>
+                                <h4 className="font-semibold mb-3">Спикеры курса:</h4>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                  {course.speakers.map((speaker) => (
+                                    <div key={speaker.id} className="flex items-center space-x-3 p-3 border rounded-lg">
+                                      <Avatar className="w-12 h-12">
+                                        <AvatarImage src={speaker.avatar} alt={speaker.name} />
+                                        <AvatarFallback>{speaker.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                      </Avatar>
+                                      <div className="flex-1">
+                                        <h5 className="font-medium">{speaker.name}</h5>
+                                        <p className="text-sm text-gray-600">{speaker.position}</p>
+                                        <p className="text-sm text-gray-500">{speaker.organization}</p>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                  <h4 className="font-semibold mb-3">Что вы изучите:</h4>
+                                  <ul className="space-y-2">
+                                    {course.learningOutcomes.map((outcome, index) => (
+                                      <li key={index} className="flex items-start">
+                                        <Icon name="CheckCircle" className="h-4 w-4 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                                        <span className="text-sm">{outcome}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                                <div>
+                                  <h4 className="font-semibold mb-3">Требования:</h4>
+                                  <ul className="space-y-2">
+                                    {course.requirements.map((requirement, index) => (
+                                      <li key={index} className="flex items-start">
+                                        <Icon name="AlertCircle" className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
+                                        <span className="text-sm">{requirement}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              </div>
+
+                              <div className="border-t pt-4">
+                                <div className="flex items-center justify-between">
+                                  <div>
+                                    <h4 className="font-semibold">Расписание:</h4>
+                                    <p className="text-sm text-gray-600">{course.schedule}</p>
+                                  </div>
+                                  <div className="text-right">
+                                    <span className="text-3xl font-bold text-primary">{course.price.toLocaleString()} ₽</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+
+                        {cart.includes(course.id) ? (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="flex-1 text-red-600 border-red-200 hover:bg-red-50"
+                            onClick={() => removeFromCart(course.id)}
+                          >
+                            <Icon name="Trash2" className="h-4 w-4 mr-2" />
+                            Удалить
+                          </Button>
+                        ) : (
+                          <Button
+                            size="sm"
+                            className="flex-1"
+                            onClick={() => addToCart(course.id)}
+                          >
+                            <Icon name="ShoppingCart" className="h-4 w-4 mr-2" />
+                            В корзину
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Schedule */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-display font-bold text-center text-gray-900 mb-12">
-            Расписание
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <Tabs defaultValue="schedule" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="schedule">Расписание курсов</TabsTrigger>
-                <TabsTrigger value="formats">Форматы обучения</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="schedule" className="mt-6">
-                <div className="space-y-4">
-                  {courses.slice(0, 5).map((course, index) => (
-                    <Card key={course.id}>
-                      <CardContent className="p-6">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-4">
-                            <div className="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center font-bold">
-                              {index + 1}
-                            </div>
-                            <div>
-                              <h3 className="font-semibold text-lg">{course.title}</h3>
-                              <p className="text-gray-600">День {index + 1} • 9:00 - 18:00</p>
-                            </div>
-                          </div>
-                          <Badge variant="outline">{course.field}</Badge>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-              
-              <TabsContent value="formats" className="mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <Icon name="MapPin" className="h-5 w-5 mr-2 text-primary" />
-                        Очное обучение
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2 text-sm">
-                        <li className="flex items-center">
-                          <Icon name="CheckCircle" className="h-4 w-4 text-green-500 mr-2" />
-                          Личное общение со спикерами
-                        </li>
-                        <li className="flex items-center">
-                          <Icon name="CheckCircle" className="h-4 w-4 text-green-500 mr-2" />
-                          Networking с участниками
-                        </li>
-                        <li className="flex items-center">
-                          <Icon name="CheckCircle" className="h-4 w-4 text-green-500 mr-2" />
-                          Практические мастер-классы
-                        </li>
-                        <li className="flex items-center">
-                          <Icon name="CheckCircle" className="h-4 w-4 text-green-500 mr-2" />
-                          Кофе-брейки и обеды
-                        </li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <Icon name="Monitor" className="h-5 w-5 mr-2 text-primary" />
-                        Онлайн-трансляция
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2 text-sm">
-                        <li className="flex items-center">
-                          <Icon name="CheckCircle" className="h-4 w-4 text-green-500 mr-2" />
-                          Участие из любой точки мира
-                        </li>
-                        <li className="flex items-center">
-                          <Icon name="CheckCircle" className="h-4 w-4 text-green-500 mr-2" />
-                          Запись всех сессий
-                        </li>
-                        <li className="flex items-center">
-                          <Icon name="CheckCircle" className="h-4 w-4 text-green-500 mr-2" />
-                          Чат с вопросами спикерам
-                        </li>
-                        <li className="flex items-center">
-                          <Icon name="CheckCircle" className="h-4 w-4 text-green-500 mr-2" />
-                          Техническая поддержка
-                        </li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
-            </Tabs>
           </div>
         </div>
       </section>
@@ -610,13 +801,6 @@ export default function Index() {
                     <div>
                       <p className="font-medium">Транспортная доступность</p>
                       <p className="text-gray-600">Метро "Сколково", бесплатная парковка</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Icon name="Coffee" className="h-5 w-5 text-primary mt-1" />
-                    <div>
-                      <p className="font-medium">Сервисы</p>
-                      <p className="text-gray-600">Питание, Wi-Fi, зоны отдыха</p>
                     </div>
                   </div>
                 </div>
@@ -695,16 +879,6 @@ export default function Index() {
                   с указанием количества академических часов и изученных тем.
                 </AccordionContent>
               </AccordionItem>
-              
-              <AccordionItem value="faq5">
-                <AccordionTrigger>
-                  Что включено в стоимость курса?
-                </AccordionTrigger>
-                <AccordionContent>
-                  В стоимость входит: участие в курсе, материалы спикеров, сертификат, кофе-брейки и обед (для очного формата), 
-                  техническая поддержка и доступ к записям (для онлайн-формата).
-                </AccordionContent>
-              </AccordionItem>
             </Accordion>
           </div>
         </div>
@@ -746,7 +920,7 @@ export default function Index() {
 
       {/* Cart Summary */}
       {cart.length > 0 && (
-        <div className="fixed bottom-6 right-6 bg-white rounded-lg shadow-lg p-6 min-w-[300px] border">
+        <div className="fixed bottom-6 right-6 bg-white rounded-lg shadow-lg p-6 min-w-[300px] border z-50">
           <h3 className="font-semibold text-lg mb-4">Корзина курсов</h3>
           <div className="space-y-2 mb-4">
             {cart.map((courseId) => {
