@@ -1229,7 +1229,7 @@ export default function Index() {
         <div 
           className="absolute inset-0 bg-gradient-to-r from-primary/20 to-blue-600/20"
           style={{
-            backgroundImage: `url(/img/4bf4fc87-8b77-4591-a054-eadd6bfab266.jpg)`,
+            backgroundImage: `url(/img/587cce0c-d871-45c6-84c6-9146b11d8afd.jpg)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -1781,19 +1781,25 @@ export default function Index() {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Icon name="Brain" className="h-8 w-8 text-primary" />
-                <h3 className="text-xl font-bold">AI Technologies</h3>
+                <h3 className="text-xl font-bold">РФОП "Экономика и управление"</h3>
               </div>
               <p className="text-gray-400">
-                Фонд развития технологий искусственного интеллекта
+                Российский фонд образования и профессиональных программ
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Курсы</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>AI в медицине</li>
-                <li>AI в промышленности</li>
-                <li>AI в ритейле</li>
-                <li>AI в логистике</li>
+                <li>AI в промышленности и робототехнике</li>
+                <li>AI в сервисе и ритейле</li>
+                <li>AI в сельском хозяйстве</li>
+                <li>AI в логистике и транспорте</li>
+                <li>AI в работе руководителя бизнеса</li>
+                <li>AI в работе инженера</li>
+                <li>AI в работе юриста</li>
+                <li>AI в стандартизации и качестве</li>
+                <li>AI во внешнеэкономической деятельности</li>
               </ul>
             </div>
             <div>
@@ -1816,7 +1822,7 @@ export default function Index() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Фонд развития технологий искусственного интеллекта. Все права защищены.</p>
+            <p>&copy; 2024 РФОП "Экономика и управление". Все права защищены.</p>
           </div>
         </div>
       </footer>
